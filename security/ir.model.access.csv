@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_omenius,res.partner Omenius,model_res_partner,base.group_user,1,1,0,0
+access_res_partner_pos_omenius,res.partner POS Omenius,model_res_partner,point_of_sale.group_pos_user,1,1,0,0
+access_ome_valid_identification,ome.valid.identification,model_ome_valid_identification,,1,1,1,0

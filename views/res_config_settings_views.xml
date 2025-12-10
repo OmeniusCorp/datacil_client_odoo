@@ -1,0 +1,46 @@
+<odoo>
+    <record id="view_res_config_settings_valid_ident" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.valid.ident</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app name="valid_ident_block" string="Validacion Identificación">
+                    <block title="Conexión API">
+                        <setting>
+                            <label for="valid_ident_api_url"/>
+                            <div class="content-group">
+                                <div class="text-muted">URL del Servicio de Validacion.</div>
+                                <field name="valid_ident_api_url" placeholder="https://ome.validation.api.com"/>
+                            </div>
+                        </setting>
+
+                        <setting>
+                            <label for="valid_ident_api_key"/>
+                            <div class="content-group">
+                                <div class="text-muted">Clave secreta de autenticación.</div>
+                                <field name="valid_ident_api_key" password="True" placeholder="••••••••••"/>
+                            </div>
+                        </setting>
+
+                        <setting>
+                            <label for="valid_ident_api_delay"/>
+                            <div class="content-group">
+                                <div class="text-muted">Segundos de espera para la respuesta de la API.</div>
+                                <field name="valid_ident_api_delay" placeholder="0"/>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Validaciones">
+                        <setting>
+                            <field name="valid_ident_load_created_partners"/>
+                            <label for="valid_ident_load_created_partners"/>
+                            <div class="text-muted">Al validar la cedula de un cliente antes registrado cargar su informacion.</div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
