@@ -6,12 +6,12 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app name="valid_ident_block" string="Validacion Identificación">
-                    <block title="Conexión API">
+                    <block title="Conexión Datacil">
                         <setting>
                             <label for="valid_ident_api_url"/>
                             <div class="content-group">
                                 <div class="text-muted">URL del Servicio de Validacion.</div>
-                                <field name="valid_ident_api_url" placeholder="https://ome.validation.api.com"/>
+                                <field name="valid_ident_api_url" placeholder="https://api.datacil.com"/>
                             </div>
                         </setting>
 
@@ -20,6 +20,22 @@
                             <div class="content-group">
                                 <div class="text-muted">Clave secreta de autenticación.</div>
                                 <field name="valid_ident_api_key" password="True" placeholder="••••••••••"/>
+                            </div>
+                        </setting>
+
+                        <setting>
+                            <label for="valid_ident_api_version"/>
+                            <div class="content-group">
+                                <div class="text-muted">Version de la API.</div>
+                                <field name="valid_ident_api_version"/>
+                            </div>
+                        </setting>
+
+                        <setting>
+                            <label for="valid_ident_api_country"/>
+                            <div class="content-group">
+                                <div class="text-muted">Pais de donde se consultan los datos de los contactos.</div>
+                                <field name="valid_ident_api_country"/>
                             </div>
                         </setting>
 
@@ -35,7 +51,6 @@
                     <block title="Validaciones">
                         <setting>
                             <field name="valid_ident_load_created_partners"/>
-                            <label for="valid_ident_load_created_partners"/>
                             <div class="text-muted">Al validar la cedula de un cliente antes registrado cargar su informacion.</div>
                         </setting>
                     </block>

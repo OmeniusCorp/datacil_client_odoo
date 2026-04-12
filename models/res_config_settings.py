@@ -6,6 +6,18 @@ class ResConfigSettings(models.TransientModel):
 
     valid_ident_api_url = fields.Char(string="API URL")
     valid_ident_api_key = fields.Char(string="API Key")
+    valid_ident_api_version = fields.Selection(
+        selection=[
+            ('v1', 'Version 1'),
+        ],
+        string='API Version'
+    )
+    valid_ident_api_country = fields.Selection(
+        selection=[
+            ('ecuador', 'Ecuador'),
+        ],
+        string='API Country'
+    )
     valid_ident_api_delay = fields.Float(string="Tiempo maximo de respuesta")
     valid_ident_load_created_partners = fields.Boolean(string="Permitir cargar clientes ya registrados")
 
@@ -19,6 +31,8 @@ class ResConfigSettings(models.TransientModel):
         res.update({
             'valid_ident_api_url': config.api_url,
             'valid_ident_api_key': config.api_key,
+            'valid_ident_api_version': config.api_version,
+            'valid_ident_api_country': config.api_country,
             'valid_ident_api_delay': config.api_delay,
             'valid_ident_load_created_partners': config.load_created_partners,
         })
@@ -40,6 +54,8 @@ class ResConfigSettings(models.TransientModel):
         config.write({
             'api_url': self.valid_ident_api_url,
             'api_key': self.valid_ident_api_key,
+            'api_version': self.valid_ident_api_version,
+            'api_country': self.valid_ident_api_country,
             'api_delay': self.valid_ident_api_delay,
             'load_created_partners': self.valid_ident_load_created_partners,
         })

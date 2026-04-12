@@ -14,9 +14,19 @@ class OmeValidIdentification(models.Model):
         ondelete="cascade", 
         default=lambda self: self.env.company,
     )
-    api_url = fields.Char(string="URL API", required=False)
+    api_url = fields.Char(string="URL", default='https://api.datacil.com', required=False)
     api_key = fields.Char(string="API Key", required=False)
     api_delay = fields.Float(string="Tiempo de respuesta", default=0.0)
+    api_version = fields.Selection(
+        selection=[('v1', 'Version 1')],
+        string='API Version',
+        default='v1'
+    )
+    api_country = fields.Selection(
+        selection=[('ecuador', 'Ecuador')],
+        string='API Country',
+        default='ecuador'
+    )
 
     load_created_partners = fields.Boolean(string="Permitir cargar clientes ya registrados", default=False)
 
@@ -41,19 +51,19 @@ class OmeValidIdentification(models.Model):
                 'message': "Un RUC ecuatoriano debe tener exactamente 13 dígitos."
             }
         
-        company = self.env.company
-        config = self.env['ome.valid.identification'].search([
-            ('company', '=', company.id)
-        ], limit=1)
-        if not config:
-            raise UserError("No se ha configurado la conexión con el servicio de validación.")
-        base_url = config.api_url
-        token = config.api_key
-        delay = config.api_delay
-        load_created_partners = config.load_created_partners
+        # company = self.env.company
+        # config = self.env['ome.valid.identification'].search([
+        #     ('company', '=', company.id)
+        # ], limit=1)
+        # if not config:
+        #     raise UserError("No se ha configurado la conexión con el servicio de validación.")
+        # base_url = config.api_url
+        # token = config.api_key
+        # delay = config.api_delay
+        # load_created_partners = config.load_created_partners
 
         headers = {
-            "Authorization": f"Bearer {token}"
+            "Authorization": f"Bearer {self.api_key}"
         }
 
         if not vat:
@@ -66,7 +76,7 @@ class OmeValidIdentification(models.Model):
 
         if existing_partner:
             msg = f'El número de identificación {vat} ya se encuentra registrado para: {existing_partner.name}'
-            if not load_created_partners:
+            if not self.load_created_partners:
                 return {
                     'success': False,
                     'message': msg
@@ -77,6 +87,7 @@ class OmeValidIdentification(models.Model):
 
         data = {}
         endpoint = None
+        base_url = f"{self.api_url}/{self.api_version}/{self.api_country}"
 
         if type == "Cédula":
             endpoint = f"{base_url}/cedula/{vat}"
@@ -85,7 +96,7 @@ class OmeValidIdentification(models.Model):
 
         if endpoint:
             try:
-                response = requests.get(endpoint, headers=headers, timeout=delay)
+                response = requests.get(endpoint, headers=headers, timeout=self.api_delay)
                 if response.status_code == 400:
                     return {
                         'success': False,
