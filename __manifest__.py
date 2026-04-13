@@ -6,15 +6,21 @@
         Módulo para validar cédula o RUC desde el formulario del cliente y autocompletar los datos automáticamente.
     """,
     'author': 'Omenius',
-    'website': 'https://megamayorista.net',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['base', 'contacts', 'l10n_latam_base'],
+    'depends': ['base', 'contacts', 'l10n_latam_base', 'web'],
     'data': [
         'security/ir.model.access.csv',
-        'views/res_partner_view.xml',
-        'views/res_config_settings_views.xml',
+        'views/contact/res_partner_view.xml',
+        'views/config/res_config_settings_views.xml',
+        'views/contact/contact_views.xml',
+        'views/actions/submenu_datacil.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'omenius_valid_identification/static/src/pages/**/*',
+        ]
+    },
     'installable': True,
     'application': False,
 }

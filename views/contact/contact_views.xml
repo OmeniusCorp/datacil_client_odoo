@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="res_partner_menu_datacil"
+        name="Datacil"
+        parent="contacts.menu_contacts"
+        action="action_datacil_dashboard"
+        sequence="2"/>
+</odoo>
