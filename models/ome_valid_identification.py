@@ -1,6 +1,6 @@
 from odoo import fields, models
 from odoo.exceptions import UserError
-import time, requests
+import requests
 
 class OmeValidIdentification(models.Model):
     _name = "ome.valid.identification"
@@ -33,6 +33,12 @@ class OmeValidIdentification(models.Model):
     def validate_identification(self, vat, type):
         valid_types = ["Cédula", "RUC"]
 
+        config = self.env['ome.valid.identification'].search([
+            ('company', '=', self.env.company.id)
+        ], limit=1)
+        if not config:
+            raise UserError("No se ha configurado la conexión con el servicio de validación.")
+
         if type not in valid_types:
             return {
                 'success': False,
@@ -50,20 +56,9 @@ class OmeValidIdentification(models.Model):
                 'success': False,
                 'message': "Un RUC ecuatoriano debe tener exactamente 13 dígitos."
             }
-        
-        # company = self.env.company
-        # config = self.env['ome.valid.identification'].search([
-        #     ('company', '=', company.id)
-        # ], limit=1)
-        # if not config:
-        #     raise UserError("No se ha configurado la conexión con el servicio de validación.")
-        # base_url = config.api_url
-        # token = config.api_key
-        # delay = config.api_delay
-        # load_created_partners = config.load_created_partners
 
         headers = {
-            "Authorization": f"Bearer {self.api_key}"
+            "Authorization": f"Bearer {config.api_key}"
         }
 
         if not vat:
@@ -76,7 +71,7 @@ class OmeValidIdentification(models.Model):
 
         if existing_partner:
             msg = f'El número de identificación {vat} ya se encuentra registrado para: {existing_partner.name}'
-            if not self.load_created_partners:
+            if not config.load_created_partners:
                 return {
                     'success': False,
                     'message': msg
@@ -87,7 +82,7 @@ class OmeValidIdentification(models.Model):
 
         data = {}
         endpoint = None
-        base_url = f"{self.api_url}/{self.api_version}/{self.api_country}"
+        base_url = f"{config.api_url}/{config.api_version}/{config.api_country}/data"
 
         if type == "Cédula":
             endpoint = f"{base_url}/cedula/{vat}"
@@ -96,7 +91,7 @@ class OmeValidIdentification(models.Model):
 
         if endpoint:
             try:
-                response = requests.get(endpoint, headers=headers, timeout=self.api_delay)
+                response = requests.get(endpoint, headers=headers, timeout=config.api_delay)
                 if response.status_code == 400:
                     return {
                         'success': False,
@@ -121,34 +116,34 @@ class OmeValidIdentification(models.Model):
                     'message': f'No se pudo conectar con el servicio externo: {str(e)}'
                 }
 
-            nombre = data.get("name") or vat.name or ""
-            ciudad = data.get("address", {}).get("city") or ""
-            direccion = data.get("address", {}).get("street") or ""
-            provincia = data.get("address", {}).get("state") or ""
+            name = data.get("name") or vat.name or ""
+            city = data.get("address", {}).get("city") or ""
+            street = data.get("address", {}).get("street") or ""
+            state = data.get("address", {}).get("state") or ""
             email = data.get("contact", {}).get("email") or ""
             cellphone = data.get("contact", {}).get("cellphone") or ""
             phone = data.get("contact", {}).get("phone") or ""
 
-            country = self.env['res.country'].search([('name', '=', "Ecuador")], limit=1)
+            country = self.env['res.country'].search([('name', 'ilike', config.api_country)], limit=1)
             
-            state = False
-            if provincia and country:
-                state = self.env['res.country.state'].search([
-                    ('name', 'ilike', provincia),
+            odoo_state = ''
+            if state and country:
+                odoo_state = self.env['res.country.state'].search([
+                    ('name', 'ilike', state),
                     ('country_id', '=', country.id)
                 ], limit=1)
 
             response = {
                 'success': True,
-                'message': f'Identificación validada correctamente para {nombre}',
+                'message': f'Identificación validada correctamente para {name}',
                 'data': {
-                    'name': nombre,
-                    'street': direccion,
-                    'city': ciudad,
+                    'name': name,
+                    'street': street,
+                    'city': city,
                     'email': email,
                     'cellphone': cellphone,
                     'phone': phone,
-                    'state_id': state.id if state else False,
+                    'state_id': odoo_state.id if odoo_state else False,
                     'country_id': country.id if country else False,
                     'vat': vat,
                 }
