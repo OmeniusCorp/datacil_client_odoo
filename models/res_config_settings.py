@@ -24,7 +24,7 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super().get_values()
-        config = self.env['ome.valid.identification'].search(
+        config = self.env['datacil.config'].search(
             [('company', '=', self.env.company.id)],
             limit=1
         )
@@ -40,15 +40,15 @@ class ResConfigSettings(models.TransientModel):
 
     def set_values(self):
         super().set_values()
-        if not self.valid_ident_api_url or not self.valid_ident_api_key:
-            raise UserError("Debe ingresar URL y API Key para guardar la configuración")
+        if not self.valid_ident_api_key:
+            raise UserError("Debe ingresar la API Key para guardar la configuración")
         company = self.env.company
-        config = self.env['ome.valid.identification'].search(
+        config = self.env['datacil.config'].search(
             [('company', '=', company.id)],
             limit=1
         )
         if not config:
-            config = self.env['ome.valid.identification'].create({
+            config = self.env['datacil.config'].create({
                 'company': company.id,
             })
         config.write({

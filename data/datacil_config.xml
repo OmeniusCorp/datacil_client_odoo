@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="datacil_config_values_1" model="datacil.config">
+            <field name="company" ref="base.main_company"/>
+            <field name="api_url">https://api.datacil.com</field>
+            <field name="api_delay">10</field>
+            <field name="api_version">v1</field>
+            <field name="api_country">ecuador</field>
+            <field name="load_created_partners">True</field>
+        </record>
+
+    </data>
+</odoo>

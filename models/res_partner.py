@@ -22,8 +22,8 @@ class ResPartner(models.Model):
                     }
                 }
 
-            validation_service = self.env['ome.valid.identification']
-            result = validation_service.validate_identification(self.vat, self.l10n_latam_identification_type_id.name)
+            validation_service = self.env['datacil.config']
+            result = validation_service.validate_identification(self.vat)
 
             if not result.get('success'):
                 self.button = False

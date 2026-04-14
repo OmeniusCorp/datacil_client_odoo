@@ -1,70 +1,27 @@
-from odoo import fields, models
+from odoo import models
 from odoo.exceptions import UserError
 import requests
 
-class OmeValidIdentification(models.Model):
-    _name = "ome.valid.identification"
-    _description = "Configuracion de Validacion de Identificacion"
-    _rec_name = "company"
+class DatacilConfig(models.Model):
+    _inherit = 'datacil.config'
 
-    company = fields.Many2one(
-        "res.company",
-        string="Compañia", 
-        required=True,
-        ondelete="cascade", 
-        default=lambda self: self.env.company,
-    )
-    api_url = fields.Char(string="URL", default='https://api.datacil.com', required=False)
-    api_key = fields.Char(string="API Key", required=False)
-    api_delay = fields.Float(string="Tiempo de respuesta", default=0.0)
-    api_version = fields.Selection(
-        selection=[('v1', 'Version 1')],
-        string='API Version',
-        default='v1'
-    )
-    api_country = fields.Selection(
-        selection=[('ecuador', 'Ecuador')],
-        string='API Country',
-        default='ecuador'
-    )
-
-    load_created_partners = fields.Boolean(string="Permitir cargar clientes ya registrados", default=False)
-
-    def validate_identification(self, vat, type):
-        valid_types = ["Cédula", "RUC"]
-
-        config = self.env['ome.valid.identification'].search([
+    def validate_identification(self, vat):
+        config = self.env['datacil.config'].search([
             ('company', '=', self.env.company.id)
         ], limit=1)
         if not config:
-            raise UserError("No se ha configurado la conexión con el servicio de validación.")
-
-        if type not in valid_types:
-            return {
-                'success': False,
-                'message': f"No se puede validar los datos del tipo de identificacion '{type}'."
-            }
-
-        if type == "Cédula" and len(vat) != 10:
-            return {
-                'success': False,
-                'message': "Una Cédula ecuatoriana debe tener exactamente 10 dígitos."
-            }
-
-        if type == "RUC" and len(vat) != 13:
-            return {
-                'success': False,
-                'message': "Un RUC ecuatoriano debe tener exactamente 13 dígitos."
-            }
-
-        headers = {
-            "Authorization": f"Bearer {config.api_key}"
-        }
+            raise UserError("No se ha configurado la conexión con el servicio de validación para esta compañia.")
 
         if not vat:
             return {
                 'success': False,
                 'message': 'Debe ingresar un número de identificación (Tax ID) antes de validar.'
+            }
+        
+        if len(vat) != 10 and len(vat) != 13:
+            return {
+                'success': False,
+                'message': 'Debe ingresa una cantidad valida de digitos (10 para cedula, 13 para RUC).'
             }
         
         existing_partner = self.env['res.partner'].search([('vat', '=', vat)], limit=1)
@@ -81,17 +38,11 @@ class OmeValidIdentification(models.Model):
             warning_message = None
 
         data = {}
-        endpoint = None
-        base_url = f"{config.api_url}/{config.api_version}/{config.api_country}/data"
-
-        if type == "Cédula":
-            endpoint = f"{base_url}/cedula/{vat}"
-        elif type == "RUC":
-            endpoint = f"{base_url}/ruc/{vat}"
+        endpoint = self._get_enpoint(config, vat)
 
         if endpoint:
             try:
-                response = requests.get(endpoint, headers=headers, timeout=config.api_delay)
+                response = requests.get(endpoint, headers={"Authorization": f"Bearer {config.api_key}"}, timeout=config.api_delay)
                 if response.status_code == 400:
                     return {
                         'success': False,
@@ -116,14 +67,8 @@ class OmeValidIdentification(models.Model):
                     'message': f'No se pudo conectar con el servicio externo: {str(e)}'
                 }
 
-            name = data.get("name") or vat.name or ""
-            city = data.get("address", {}).get("city") or ""
-            street = data.get("address", {}).get("street") or ""
+            name = data.get("name") or ""
             state = data.get("address", {}).get("state") or ""
-            email = data.get("contact", {}).get("email") or ""
-            cellphone = data.get("contact", {}).get("cellphone") or ""
-            phone = data.get("contact", {}).get("phone") or ""
-
             country = self.env['res.country'].search([('name', 'ilike', config.api_country)], limit=1)
             
             odoo_state = ''
@@ -138,11 +83,11 @@ class OmeValidIdentification(models.Model):
                 'message': f'Identificación validada correctamente para {name}',
                 'data': {
                     'name': name,
-                    'street': street,
-                    'city': city,
-                    'email': email,
-                    'cellphone': cellphone,
-                    'phone': phone,
+                    'street': data.get("address", {}).get("street") or "",
+                    'city': data.get("address", {}).get("city") or "",
+                    'email': data.get("contact", {}).get("email") or "",
+                    'cellphone': data.get("contact", {}).get("cellphone") or "",
+                    'phone': data.get("contact", {}).get("phone") or "",
                     'state_id': odoo_state.id if odoo_state else False,
                     'country_id': country.id if country else False,
                     'vat': vat,
@@ -158,3 +103,11 @@ class OmeValidIdentification(models.Model):
                 'success': False,
                 'message': f'No se encontro un endpoint para el tipo de identificacion ingresado.'
             }
+    
+    def _get_enpoint(self, config, vat):
+        base_url = f"{config.api_url}/{config.api_version}/{config.api_country}/data"
+
+        if len(vat) == 10:
+            return f"{base_url}/cedula/{vat}"
+        elif len(vat) == 13:
+            return f"{base_url}/ruc/{vat}"

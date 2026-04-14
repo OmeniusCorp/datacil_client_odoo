@@ -4,5 +4,6 @@
         name="Datacil"
         parent="contacts.menu_contacts"
         action="action_datacil_dashboard"
-        sequence="2"/>
+        sequence="2"
+        groups="group_access_datacil"/>
 </odoo>

@@ -1,3 +1,4 @@
 from . import res_partner
-from . import ome_valid_identification
+from . import datacil_config
 from . import res_config_settings
+from . import api
