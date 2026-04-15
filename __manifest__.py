@@ -1,9 +1,9 @@
 {
-    'name': 'Datacil Client',
+    'name': 'Datacil Client Ecuador',
     'version': '19.0.1.0.0',
-    'summary': 'Validar cédula o RUC y autocompletar datos del cliente',
+    'summary': 'Validate ID or Tax ID and autocomplete customer data',
     'description': """
-        Módulo para validar cédula o RUC desde el formulario del cliente y autocompletar los datos automáticamente usando los servicio de Datacil.
+        Module to validate ID or Tax ID from the customer form and autocomplete data automatically using Datacil services.
     """,
     'author': 'Datacil',
     'category': 'Productivity',

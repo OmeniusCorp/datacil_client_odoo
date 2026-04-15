@@ -1,4 +1,4 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 
 class ResConfigSettings(models.TransientModel):
@@ -18,8 +18,8 @@ class ResConfigSettings(models.TransientModel):
         ],
         string='API Country'
     )
-    valid_ident_api_delay = fields.Float(string="Tiempo maximo de respuesta")
-    valid_ident_load_created_partners = fields.Boolean(string="Permitir cargar clientes ya registrados")
+    valid_ident_api_delay = fields.Float(string="Maximum Response Time")
+    valid_ident_load_created_partners = fields.Boolean(string="Allow loading already registered customers")
 
     @api.model
     def get_values(self):
@@ -41,7 +41,7 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super().set_values()
         if not self.valid_ident_api_key:
-            raise UserError("Debe ingresar la API Key para guardar la configuración")
+            raise UserError(_("You must enter the API Key to save the configuration"))
         company = self.env.company
         config = self.env['datacil.config'].search(
             [('company', '=', company.id)],

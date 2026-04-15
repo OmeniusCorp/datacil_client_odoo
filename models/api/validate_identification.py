@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import models, _
 from odoo.exceptions import UserError
 import requests
 
@@ -10,24 +10,24 @@ class DatacilConfig(models.Model):
             ('company', '=', self.env.company.id)
         ], limit=1)
         if not config:
-            raise UserError("No se ha configurado la conexión con el servicio de validación para esta compañia.")
+            raise UserError(_("The connection to the validation service has not been configured for this company."))
 
         if not vat:
             return {
                 'success': False,
-                'message': 'Debe ingresar un número de identificación (Tax ID) antes de validar.'
+                'message': _('You must enter an identification number (Tax ID) before validating.')
             }
-        
+
         if len(vat) != 10 and len(vat) != 13:
             return {
                 'success': False,
-                'message': 'Debe ingresa una cantidad valida de digitos (10 para cedula, 13 para RUC).'
+                'message': _('You must enter a valid number of digits (10 for ID, 13 for RUC).')
             }
-        
+
         existing_partner = self.env['res.partner'].search([('vat', '=', vat)], limit=1)
 
         if existing_partner:
-            msg = f'El número de identificación {vat} ya se encuentra registrado para: {existing_partner.name}'
+            msg = _('The identification number %s is already registered for: %s') % (vat, existing_partner.name)
             if not config.load_created_partners:
                 return {
                     'success': False,
@@ -46,31 +46,31 @@ class DatacilConfig(models.Model):
                 if response.status_code == 400:
                     return {
                         'success': False,
-                        'message': f'La identificacion ingresada {vat} es invalida para su tipo {type}.'
+                        'message': _('The entered identification %s is invalid for its type.') % vat
                     }
                 if response.status_code == 404:
                     return {
                         'success': False,
-                        'message': f'La identificacion ingresada {vat} no fue encontrada.'
+                        'message': _('The entered identification %s was not found.') % vat
                     }
                 if response.status_code == 500:
                     return {
                         'success': False,
-                        'message': f'Error en nuestros servicios, por favor intentelo de nuevo en unos minutos.'
+                        'message': _('Error in our services, please try again in a few minutes.')
                     }
                 result = response.json()
-                
+
                 data = result.get("data", {})
             except Exception as e:
                 return {
                     'success': False,
-                    'message': f'No se pudo conectar con el servicio externo: {str(e)}'
+                    'message': _('Could not connect to the external service: %s') % str(e)
                 }
 
             name = data.get("name") or ""
             state = data.get("address", {}).get("state") or ""
             country = self.env['res.country'].search([('name', 'ilike', config.api_country)], limit=1)
-            
+
             odoo_state = ''
             if state and country:
                 odoo_state = self.env['res.country.state'].search([
@@ -80,7 +80,7 @@ class DatacilConfig(models.Model):
 
             response = {
                 'success': True,
-                'message': f'Identificación validada correctamente para {name}',
+                'message': _('Identification successfully validated for %s') % name,
                 'data': {
                     'name': name,
                     'street': data.get("address", {}).get("street") or "",
@@ -95,15 +95,15 @@ class DatacilConfig(models.Model):
             }
 
             if warning_message:
-                response['message'] = f'{warning_message}'
+                response['message'] = warning_message
 
             return response
         else:
             return {
                 'success': False,
-                'message': f'No se encontro un endpoint para el tipo de identificacion ingresado.'
+                'message': _('No endpoint found for the entered identification type.')
             }
-    
+
     def _get_enpoint(self, config, vat):
         base_url = f"{config.api_url}/{config.api_version}/{config.api_country}/data"
 

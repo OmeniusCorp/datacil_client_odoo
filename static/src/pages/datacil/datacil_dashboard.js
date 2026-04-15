@@ -3,6 +3,7 @@ import { Component, onWillStart, useState } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { rpc } from "@web/core/network/rpc";
+import { _t } from "@web/core/l10n/translation";
 
 class DatacilDashboard extends Component {
     static template = "datacil_client_odoo.datacil_dashboard";
@@ -44,7 +45,7 @@ class DatacilDashboard extends Component {
             }));
             this.state.costs = costsRes.data?.costs || [];
         } catch (e) {
-            this.state.error = "No se pudo conectar con el servicio.";
+            this.state.error = _t("Could not connect to the service.");
         } finally {
             this.state.loading = false;
         }
@@ -52,7 +53,7 @@ class DatacilDashboard extends Component {
 
     async onRefresh() {
         await this.loadData();
-        this.notification.add("Dashboard actualizado", { type: "success" });
+        this.notification.add(_t("Dashboard updated"), { type: "success" });
     }
 
     _formatDate(isoString) {

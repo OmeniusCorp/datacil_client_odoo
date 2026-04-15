@@ -1,0 +1,380 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * datacil_client_odoo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-15 00:00+0000\n"
+"PO-Revision-Date: 2026-04-15 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: datacil_client_odoo
+#: model:ir.model,name:datacil_client_odoo.model_datacil_config
+msgid "Identification Validation Configuration"
+msgstr "Configuración de Validación de Identificación"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__company
+msgid "Company"
+msgstr "Compañía"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__api_url
+msgid "URL"
+msgstr "URL"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__api_key
+msgid "API Key"
+msgstr "API Key"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__api_delay
+msgid "Response Time"
+msgstr "Tiempo de respuesta"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__api_version
+msgid "API Version"
+msgstr "Versión de la API"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__api_country
+msgid "API Country"
+msgstr "País de la API"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_datacil_config__load_created_partners
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_res_config_settings__valid_ident_load_created_partners
+msgid "Allow loading already registered customers"
+msgstr "Permitir cargar clientes ya registrados"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_res_partner__button
+msgid "Validate"
+msgstr "Validar"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_res_partner__identification_validated
+msgid "Validated Identification"
+msgstr "Identificación Validada"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_res_config_settings__valid_ident_api_url
+msgid "API URL"
+msgstr "URL de la API"
+
+#. module: datacil_client_odoo
+#: model:ir.model.fields,field_description:datacil_client_odoo.field_res_config_settings__valid_ident_api_delay
+msgid "Maximum Response Time"
+msgstr "Tiempo máximo de respuesta"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_partner.py:0
+msgid "Warning"
+msgstr "Advertencia"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_partner.py:0
+msgid "You must enter an identification number before validating."
+msgstr "Debe ingresar un número de identificación antes de validar."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_partner.py:0
+msgid "Validation Error"
+msgstr "Error de Validación"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_partner.py:0
+msgid "Unknown error during validation."
+msgstr "Error desconocido al validar."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_partner.py:0
+msgid "Validation Successful"
+msgstr "Validación Exitosa"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/res_config_settings.py:0
+msgid "You must enter the API Key to save the configuration"
+msgstr "Debe ingresar la API Key para guardar la configuración"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "The connection to the validation service has not been configured for this company."
+msgstr "No se ha configurado la conexión con el servicio de validación para esta compañía."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "You must enter an identification number (Tax ID) before validating."
+msgstr "Debe ingresar un número de identificación (Tax ID) antes de validar."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "You must enter a valid number of digits (10 for ID, 13 for RUC)."
+msgstr "Debe ingresar una cantidad válida de dígitos (10 para cédula, 13 para RUC)."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "The identification number %s is already registered for: %s"
+msgstr "El número de identificación %s ya se encuentra registrado para: %s"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "The entered identification %s is invalid for its type."
+msgstr "La identificación ingresada %s es inválida para su tipo."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "The entered identification %s was not found."
+msgstr "La identificación ingresada %s no fue encontrada."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "Error in our services, please try again in a few minutes."
+msgstr "Error en nuestros servicios, por favor inténtelo de nuevo en unos minutos."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "Could not connect to the external service: %s"
+msgstr "No se pudo conectar con el servicio externo: %s"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "Identification successfully validated for %s"
+msgstr "Identificación validada correctamente para %s"
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
+msgid "No endpoint found for the entered identification type."
+msgstr "No se encontró un endpoint para el tipo de identificación ingresado."
+
+#. module: datacil_client_odoo
+#. odoo-python
+#: code:addons/datacil_client_odoo/controllers/datacil_api.py:0
+msgid "The connection to Datacil has not been configured."
+msgstr "No se ha configurado la conexión con Datacil."
+
+#. module: datacil_client_odoo
+#: model:res.groups,name:datacil_client_odoo.group_access_datacil
+msgid "Datacil Dashboard Access"
+msgstr "Acceso Datacil Dashboard"
+
+#. module: datacil_client_odoo
+#: model:res.groups,comment:datacil_client_odoo.group_access_datacil
+msgid "Allows access to the Datacil dashboard"
+msgstr "Permite acceder al dashboard de Datacil"
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Datacil Connection"
+msgstr "Conexión Datacil"
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Validation Service URL."
+msgstr "URL del Servicio de Validación."
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Secret authentication key."
+msgstr "Clave secreta de autenticación."
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "API Version."
+msgstr "Versión de la API."
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Country where contact data is queried."
+msgstr "País de donde se consultan los datos de los contactos."
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Seconds to wait for API response."
+msgstr "Segundos de espera para la respuesta de la API."
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "Validations"
+msgstr "Validaciones"
+
+#. module: datacil_client_odoo
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo.view_res_config_settings_datacil
+msgid "When validating the ID of a previously registered customer, load their information."
+msgstr "Al validar la cédula de un cliente antes registrado cargar su información."
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.js:0
+msgid "Could not connect to the service."
+msgstr "No se pudo conectar con el servicio."
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.js:0
+msgid "Dashboard updated"
+msgstr "Dashboard actualizado"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Credit Balance"
+msgstr "Saldo de créditos"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Datacil Dashboard"
+msgstr "Panel de Datacil"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Refresh"
+msgstr "Actualizar"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Loading data..."
+msgstr "Cargando datos..."
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Credit Balance"
+msgstr "Saldo de créditos"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Total Consumed"
+msgstr "Total consumido"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "credits used"
+msgstr "créditos usados"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Queries Performed"
+msgstr "Consultas realizadas"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "transactions"
+msgstr "transacciones"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Costs by Service"
+msgstr "Costos por servicio"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Service"
+msgstr "Servicio"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Cost"
+msgstr "Costo"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Free"
+msgstr "Gratis"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Consumption by Service"
+msgstr "Consumo por servicio"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Queries"
+msgstr "Consultas"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Credits"
+msgstr "Créditos"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "credits"
+msgstr "créditos"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "No data"
+msgstr "Sin datos"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Transaction History"
+msgstr "Historial de transacciones"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "Query"
+msgstr "Consulta"
+
+#. module: datacil_client_odoo
+#. odoo-javascript
+#: code:addons/datacil_client_odoo/static/src/pages/datacil/datacil_dashboard.xml:0
+msgid "No transactions"
+msgstr "Sin transacciones"

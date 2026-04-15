@@ -1,5 +1,5 @@
 import requests, logging
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 log = logging.getLogger(__name__)
@@ -7,8 +7,8 @@ log = logging.getLogger(__name__)
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    button = fields.Boolean('Validar', store=False)
-    identification_validated = fields.Boolean(string='Identificación Validada', default=False, store=False)
+    button = fields.Boolean('Validate', store=False)
+    identification_validated = fields.Boolean(string='Validated Identification', default=False, store=False)
 
     @api.onchange('button')
     def get_data_identification(self):
@@ -17,8 +17,8 @@ class ResPartner(models.Model):
                 self.button = False
                 return {
                     'warning': {
-                        'title': 'Advertencia',
-                        'message': 'Debe ingresar un número de identificación antes de validar.'
+                        'title': _('Warning'),
+                        'message': _('You must enter an identification number before validating.')
                     }
                 }
 
@@ -29,8 +29,8 @@ class ResPartner(models.Model):
                 self.button = False
                 return {
                     'warning': {
-                        'title': 'Error de Validación',
-                        'message': result.get('message', 'Error desconocido al validar.')
+                        'title': _('Validation Error'),
+                        'message': result.get('message', _('Unknown error during validation.'))
                     }
                 }
 
@@ -55,7 +55,7 @@ class ResPartner(models.Model):
             self.button = False
             return {
                 'warning': {
-                    'title': 'Validación Exitosa',
+                    'title': _('Validation Successful'),
                     'message': result.get('message')
                 }
             }

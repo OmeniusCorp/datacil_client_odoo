@@ -1,5 +1,5 @@
 import requests
-from odoo import http
+from odoo import http, _
 from odoo.http import request
 
 
@@ -10,7 +10,7 @@ class DatacilApiController(http.Controller):
             ('company', '=', request.env.company.id)
         ], limit=1)
         if not config:
-            return None, {'success': False, 'message': 'No se ha configurado la conexión con Datacil.'}
+            return None, {'success': False, 'message': _('The connection to Datacil has not been configured.')}
         return config, None
 
     def _api_get(self, config, path):
