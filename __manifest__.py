@@ -1,6 +1,6 @@
 {
     'name': 'Datacil Client Ecuador',
-    'version': '18.0.1.0.0',
+    'version': '17.0.1.0.0',
     'summary': 'Validate ID or Tax ID and autocomplete customer data',
     'description': """
         Module to validate ID or Tax ID from the customer form and autocomplete data automatically using Datacil services.
