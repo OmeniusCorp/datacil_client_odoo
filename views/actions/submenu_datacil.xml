@@ -3,6 +3,6 @@
     <record id="action_datacil_dashboard" model="ir.actions.client">
         <field name="name">Datacil</field>
         <field name="tag">datacil_client_odoo.datacil_dashboard</field>
-        
+        <field name="path">datacil-dashboard</field>
     </record>
 </odoo>
