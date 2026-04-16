@@ -4,57 +4,76 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
-                <app name="datacil_client_odoo" string="Datacil" data-key="datacil_client_odoo">
-                    <block title="Datacil Connection">
-                        <setting>
-                            <label for="valid_ident_api_url"/>
-                            <div class="content-group">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+
+                <div class="app_settings_block" string="Datacil" name="datacil_client_odoo" data-key="datacil_client_odoo">
+
+                    <h2>Datacil Connection</h2>
+
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="valid_ident_api_url"/>
                                 <div class="text-muted">Validation Service URL.</div>
                                 <field name="valid_ident_api_url" placeholder="https://api.datacil.com"/>
                             </div>
-                        </setting>
+                        </div>
 
-                        <setting>
-                            <label for="valid_ident_api_key"/>
-                            <div class="content-group">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="valid_ident_api_key"/>
                                 <div class="text-muted">Secret authentication key.</div>
-                                <field name="valid_ident_api_key" password="True" placeholder="••••••••••"/>
+                                <field name="valid_ident_api_key" password="True"/>
                             </div>
-                        </setting>
+                        </div>
 
-                        <setting>
-                            <label for="valid_ident_api_version"/>
-                            <div class="content-group">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="valid_ident_api_version"/>
                                 <div class="text-muted">API Version.</div>
                                 <field name="valid_ident_api_version"/>
                             </div>
-                        </setting>
+                        </div>
 
-                        <setting>
-                            <label for="valid_ident_api_country"/>
-                            <div class="content-group">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="valid_ident_api_country"/>
                                 <div class="text-muted">Country where contact data is queried.</div>
                                 <field name="valid_ident_api_country"/>
                             </div>
-                        </setting>
+                        </div>
 
-                        <setting>
-                            <label for="valid_ident_api_delay"/>
-                            <div class="content-group">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="valid_ident_api_delay"/>
                                 <div class="text-muted">Seconds to wait for API response.</div>
-                                <field name="valid_ident_api_delay" placeholder="0"/>
+                                <field name="valid_ident_api_delay"/>
                             </div>
-                        </setting>
-                    </block>
+                        </div>
+                    </div>
 
-                    <block title="Validations">
-                        <setting>
-                            <field name="valid_ident_load_created_partners"/>
-                            <div class="text-muted">When validating the ID of a previously registered customer, load their information.</div>
-                        </setting>
-                    </block>
-                </app>
+                    <h2>Validations</h2>
+
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="valid_ident_load_created_partners"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <div class="text-muted">
+                                    When validating the ID of a previously registered customer, load their information.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </xpath>
         </field>
     </record>
