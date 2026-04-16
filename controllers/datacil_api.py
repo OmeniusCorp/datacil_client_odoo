@@ -9,9 +9,12 @@ class DatacilApiController(http.Controller):
         config = request.env['datacil.config'].sudo().search([
             ('company', '=', request.env.company.id)
         ], limit=1)
-        if not config:
-            return None, {'success': False, 'message': _('The connection to Datacil has not been configured.')}
+        if self._val_config(config):
+            return None, {'success': False, 'message': _('The connection to Datacil has not been configured. Please go to Settings -> Datacil.')}
         return config, None
+
+    def _val_config(self, config):
+        return not config.api_url or not config.api_key or not config.api_country or not config.api_version
 
     def _api_get(self, config, path):
         headers = {"Authorization": f"Bearer {config.api_key}"}
