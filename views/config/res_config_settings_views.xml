@@ -65,6 +65,7 @@
                                 <field name="valid_ident_load_created_partners"/>
                             </div>
                             <div class="o_setting_right_pane">
+                                <label for="valid_ident_load_created_partners"/>
                                 <div class="text-muted">
                                     When validating the ID of a previously registered customer, load their information.
                                 </div>
