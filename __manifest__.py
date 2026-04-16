@@ -1,6 +1,6 @@
 {
     'name': 'Datacil Client Ecuador',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Validate ID or Tax ID and autocomplete customer data',
     'description': """
         Module to validate ID or Tax ID from the customer form and autocomplete data automatically using Datacil services.
@@ -8,7 +8,7 @@
     'author': 'Datacil',
     'category': 'Productivity',
     'license': 'LGPL-3',
-    'depends': ['base', 'contacts', 'point_of_sale', 'l10n_latam_base', 'web'],
+    'depends': ['base', 'contacts', 'l10n_latam_base', 'web'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
