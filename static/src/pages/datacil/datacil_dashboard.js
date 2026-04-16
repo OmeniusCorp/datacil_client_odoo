@@ -2,7 +2,6 @@
 import { Component, onWillStart, useState } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { rpc } from "@web/core/network/rpc";
 import { _t } from "@web/core/l10n/translation";
 
 class DatacilDashboard extends Component {
@@ -10,6 +9,7 @@ class DatacilDashboard extends Component {
 
     setup() {
         this.notification = useService("notification");
+        this.rpc = useService("rpc")
         this.state = useState({
             credits: null,
             history: [],
@@ -28,9 +28,9 @@ class DatacilDashboard extends Component {
         this.state.error = null;
         try {
             const [creditsRes, historyRes, costsRes] = await Promise.all([
-                rpc("/datacil/credits", {}),
-                rpc("/datacil/credits/history", {}),
-                rpc("/datacil/costs", {}),
+                this.rpc("/datacil/credits", {}),
+                this.rpc("/datacil/credits/history", {}),
+                this.rpc("/datacil/costs", {}),
             ]);
 
             if (!creditsRes.success) {
