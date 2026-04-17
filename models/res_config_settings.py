@@ -10,13 +10,15 @@ class ResConfigSettings(models.TransientModel):
         selection=[
             ('v1', 'Version 1'),
         ],
-        string='API Version'
+        string='API Version',
+        require=True
     )
     valid_ident_api_country = fields.Selection(
         selection=[
             ('ecuador', 'Ecuador'),
         ],
-        string='API Country'
+        string='API Country',
+        require=True
     )
     valid_ident_api_delay = fields.Float(string="Maximum Response Time")
     valid_ident_load_created_partners = fields.Boolean(string="Allow loading already registered customers")
@@ -40,8 +42,6 @@ class ResConfigSettings(models.TransientModel):
 
     def set_values(self):
         super().set_values()
-        if not self.valid_ident_api_key:
-            raise UserError(_("You must enter the API Key to save the configuration"))
         company = self.env.company
         config = self.env['datacil.config'].search(
             [('company', '=', company.id)],

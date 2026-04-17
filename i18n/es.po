@@ -116,8 +116,8 @@ msgstr "Debe ingresar la API Key para guardar la configuración"
 #. module: datacil_client_odoo
 #. odoo-python
 #: code:addons/datacil_client_odoo/models/api/validate_identification.py:0
-msgid "The connection to the validation service has not been configured for this company."
-msgstr "No se ha configurado la conexión con el servicio de validación para esta compañía."
+msgid "The connection to the validation service has not been configured for this company. Please go to Settings -> Datacil."
+msgstr "No se ha configurado la conexión con el servicio de validación para esta compañía. Porfavor ve a Ajustes -> Datacil."
 
 #. module: datacil_client_odoo
 #. odoo-python
@@ -176,8 +176,8 @@ msgstr "No se encontró un endpoint para el tipo de identificación ingresado."
 #. module: datacil_client_odoo
 #. odoo-python
 #: code:addons/datacil_client_odoo/controllers/datacil_api.py:0
-msgid "The connection to Datacil has not been configured."
-msgstr "No se ha configurado la conexión con Datacil."
+msgid "The connection to Datacil has not been configured. Please go to Settings -> Datacil."
+msgstr "No se ha configurado la conexión con Datacil. Porfavor dirigete a Ajustes -> Datacil."
 
 #. module: datacil_client_odoo
 #: model:res.groups,name:datacil_client_odoo.group_access_datacil
