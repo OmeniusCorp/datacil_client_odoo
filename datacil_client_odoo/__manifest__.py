@@ -23,6 +23,7 @@
             'datacil_client_odoo/static/src/pages/**/*',
         ]
     },
+    'images': ['static/description/banner.jpg'],
     'website': 'https://datacil.com',
     'installable': True,
     'application': False,
