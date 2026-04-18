@@ -1,5 +1,5 @@
 {
-    'name': 'Datacil Client Ecuador',
+    'name': 'Datacil Client Ecuador - Consultar Cedula y RUC Autocompletar datos',
     'version': '18.0.1.0.0',
     'summary': 'Validate ID or Tax ID and autocomplete customer data',
     'description': """
