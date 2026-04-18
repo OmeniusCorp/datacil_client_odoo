@@ -1,14 +1,15 @@
 {
     'name': 'Datacil Client Ecuador - Consultar Cedula y RUC Autocompletar datos',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
     'summary': 'Validate ID or Tax ID and autocomplete customer data',
     'description': """
         Module to validate ID or Tax ID from the customer form and autocomplete data automatically using Datacil services.
     """,
     'author': 'Datacil',
+    'support': 'soporte@datacil.com',
     'category': 'Productivity',
     'license': 'LGPL-3',
-    'depends': ['base', 'contacts', 'point_of_sale', 'l10n_latam_base', 'web'],
+    'depends': ['base', 'contacts', 'l10n_latam_base', 'web', 'point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
@@ -24,6 +25,7 @@
         ]
     },
     'website': 'https://datacil.com',
+    'images': ['static/description/banner.jpg'],
     'installable': True,
     'application': False,
 }
