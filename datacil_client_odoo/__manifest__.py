@@ -6,6 +6,7 @@
         Module to validate ID or Tax ID from the customer form and autocomplete data automatically using Datacil services.
     """,
     'author': 'Datacil',
+    'support': 'soporte@datacil.com',
     'category': 'Productivity',
     'license': 'LGPL-3',
     'depends': ['base', 'contacts', 'l10n_latam_base', 'web', 'point_of_sale'],
@@ -24,6 +25,7 @@
         ]
     },
     'website': 'https://datacil.com',
+    'images': ['static/description/banner.jpg'],
     'installable': True,
     'application': False,
 }
