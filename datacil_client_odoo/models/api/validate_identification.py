@@ -9,8 +9,8 @@ class DatacilConfig(models.Model):
         config = self.env['datacil.config'].search([
             ('company', '=', self.env.company.id)
         ], limit=1)
-        if not config:
-            raise UserError(_("The connection to the validation service has not been configured for this company."))
+        if self._val_config(config):
+            raise UserError(_("The connection to the validation service has not been configured for this company. Please go to Settings -> Datacil."))
 
         if not vat:
             return {
@@ -111,3 +111,6 @@ class DatacilConfig(models.Model):
             return f"{base_url}/cedula/{vat}"
         elif len(vat) == 13:
             return f"{base_url}/ruc/{vat}"
+
+    def _val_config(self, config):
+        return not config.api_url or not config.api_key or not config.api_country or not config.api_version
