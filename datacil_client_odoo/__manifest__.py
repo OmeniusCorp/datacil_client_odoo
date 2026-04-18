@@ -8,7 +8,7 @@
     'author': 'Datacil',
     'category': 'Productivity',
     'license': 'LGPL-3',
-    'depends': ['base', 'contacts', 'l10n_latam_base', 'web'],
+    'depends': ['base', 'contacts', 'l10n_latam_base', 'web', 'point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
