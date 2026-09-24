@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="datacil_client_odoo.DatacilErrorDialog">
+        <Dialog title="screen.title" size="'md'">
+            <div class="o_datacil_error text-center py-2">
+                <i t-attf-class="fa fa-3x mb-3 {{screen.icon}} {{screen.cls}}" role="img" t-att-aria-label="screen.title"/>
+                <p class="mb-2 fw-medium" t-esc="props.result.message"/>
+                <p t-if="screen.hint" class="text-muted small mb-0">
+                    <i class="fa fa-info-circle me-1" role="img" aria-label="Note"/><span t-esc="screen.hint"/>
+                </p>
+            </div>
+            <t t-set-slot="footer">
+                <button t-if="canOpenDashboard" type="button" class="btn btn-primary" t-on-click="openDashboard">
+                    <i class="fa fa-bar-chart me-1"/>View credits
+                </button>
+                <button t-if="existingPartner" type="button" class="btn btn-primary" t-on-click="openExisting">
+                    <i class="fa fa-user me-1"/>Open existing contact
+                </button>
+                <button t-if="canRetry" type="button" class="btn btn-primary" t-on-click="retry">
+                    <i class="fa fa-refresh me-1"/>Retry
+                </button>
+                <button type="button" class="btn btn-secondary" t-on-click="() => this.props.close()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

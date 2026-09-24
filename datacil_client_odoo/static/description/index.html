@@ -32,7 +32,8 @@
                     <h3 class="text-primary fs-4">Validacion de Identificacion</h3>
                     <p>
                         Valida cedulas (10 digitos) y RUC (13 digitos) de Ecuador
-                        en tiempo real usando la API de Datacil.
+                        en tiempo real usando la API de Datacil, desde Contactos
+                        y desde el formulario de cliente del Punto de Venta.
                     </p>
                 </div>
             </div>
@@ -129,12 +130,38 @@
                     </p>
                 </div>
                 <div class="border-start border-4 ps-3 ps-md-4 mb-4 border-primary">
-                    <h4 class="mb-1 fs-5" class="text-primary">Manejo de Errores</h4>
+                    <h4 class="mb-1 fs-5" class="text-primary">Pantallas de Estado y Error</h4>
                     <p class="mb-0">
-                        Mensajes claros cuando la identificacion es invalida,
-                        no se encuentra o hay problemas con el servicio.
+                        Indicador de carga explicito durante la consulta, dialogo con el resultado
+                        y pantallas especificas para: sin creditos, API no configurada,
+                        servicio caido, clave rechazada, identificacion invalida o no encontrada.
                     </p>
                 </div>
+                <div class="border-start border-4 ps-3 ps-md-4 mb-4 border-primary">
+                    <h4 class="mb-1 fs-5" class="text-primary">Creditos en Ajustes</h4>
+                    <p class="mb-0">
+                        Saldo de creditos visible en Ajustes &rarr; Datacil con boton para
+                        actualizar y probar la conexion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan text-primary">Integraciones (se instalan automaticamente)</h2>
+        <div class="oe_span12">
+            <div class="bg-light rounded p-3 p-md-4">
+                <ul class="lh-lg mb-0">
+                    <li><strong>CRM:</strong> campo Cedula / RUC en iniciativas y oportunidades con consulta y enlace al cliente existente.</li>
+                    <li><strong>Ventas, Compras y Reparaciones (taller):</strong> alerta cuando el RUC del cliente/proveedor esta suspendido, cancelado o es empresa fantasma; boton para verificar en Datacil.</li>
+                    <li><strong>Flota / Vehiculos:</strong> consulta por placa: chasis, color, ano, marca/modelo, propietario, valores pendientes y citaciones.</li>
+                    <li><strong>Empleados:</strong> identidad, licencia de conducir, antecedentes judiciales y ANT, con notas en el chatter.</li>
+                    <li><strong>Sitio web:</strong> autocompletado del formulario de direccion por cedula / RUC (activable por sitio web).</li>
+                    <li><strong>Autocompletado de contactos:</strong> el autocompletado nativo de Odoo se sirve desde Datacil para Ecuador.</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -167,8 +194,9 @@
         <div class="oe_span12">
             <div class="rounded p-3 p-md-4 border" style="background: #fff3cd; border-color: #ffc107 !important;">
                 <p class="mb-0" style="color: #856404;">
-                    <strong>Dependencias:</strong> Este modulo requiere los modulos
-                    <code>contacts</code> y <code>l10n_latam_base</code> instalados.
+                    <strong>Dependencias:</strong> Este modulo solo requiere el modulo
+                    <code>contacts</code> y <code>point_of_sale</code>. Las integraciones con otras apps se instalan
+                    automaticamente cuando la app esta presente y no generan errores si no lo esta.
                     Ademas, necesitas una cuenta activa en
                     <a href="https://datacil.com" target="_blank" class="text-primary">datacil.com</a>
                     con creditos disponibles para usar el servicio de validacion.
@@ -182,7 +210,7 @@
     <div class="oe_row oe_spaced">
         <div class="oe_span12 text-center py-4">
             <p class="text-muted small">
-                Desarrollado por <strong>Datacil</strong> | Version 18.0.1.0.0 | Licencia LGPL-3
+                Desarrollado por <strong>Datacil</strong> | Version 19.0.2.0.0 | Licencia LGPL-3
             </p>
             <p>
                 <a href="https://datacil.com" target="_blank" class="fw-bold text-decoration-none" class="text-primary">

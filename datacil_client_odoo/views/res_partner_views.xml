@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Priority 200: applied after base_vat (15) and l10n_latam_base (100) so the
+         button always lands right next to the identification number. -->
+    <record id="view_partner_form_datacil" model="ir.ui.view">
+        <field name="name">res.partner.form.datacil</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">200</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <widget name="datacil_lookup" field="vat" method="datacil_lookup" class="ms-2"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="datacil" string="Datacil" invisible="not datacil_last_sync">
+                    <group>
+                        <group string="SRI Information">
+                            <field name="datacil_kind" force_save="1"/>
+                            <field name="datacil_profile_type" force_save="1" invisible="datacil_kind != 'ruc'"/>
+                            <field name="datacil_ruc_status" force_save="1" invisible="datacil_kind != 'ruc'"/>
+                            <field name="datacil_regime" force_save="1" invisible="datacil_kind != 'ruc'"/>
+                            <field name="datacil_activity" force_save="1" invisible="datacil_kind != 'ruc'"/>
+                        </group>
+                        <group string="Tax Flags" invisible="datacil_kind != 'ruc'">
+                            <field name="datacil_accounting_required" force_save="1"/>
+                            <field name="datacil_withholding_agent" force_save="1"/>
+                            <field name="datacil_special_contributor" force_save="1"/>
+                            <field name="datacil_is_ghost" force_save="1"/>
+                            <field name="datacil_last_sync" force_save="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

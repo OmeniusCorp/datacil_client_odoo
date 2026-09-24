@@ -2,10 +2,10 @@
 <odoo>
     <record id="group_access_datacil" model="res.groups">
         <field name="name">Datacil Dashboard Access</field>
-        <field name="comment">Allows access to the Datacil dashboard</field>
+        <field name="comment">Allows access to the Datacil dashboard (credits, history and costs).</field>
     </record>
 
     <record id="base.group_system" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('group_access_datacil'))]" />
+        <field name="implied_ids" eval="[(4, ref('group_access_datacil'))]"/>
     </record>
 </odoo>
