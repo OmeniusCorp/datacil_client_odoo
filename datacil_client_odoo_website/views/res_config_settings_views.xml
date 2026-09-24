@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_datacil_website" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.datacil.website</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_info_settings']" position="after">
+                <block title="Datacil" id="datacil_website_settings" invisible="not website_id">
+                    <setting help="Fill the customer name and address on the checkout and portal address forms from the cédula / RUC entered by the visitor.">
+                        <field name="datacil_website_autocomplete"/>
+                        <div class="content-group mt-2" invisible="not datacil_website_autocomplete">
+                            <field name="datacil_website_autocomplete_mode" widget="radio"/>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

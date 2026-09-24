@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Flag the identification input so the frontend only queries when the website option is on. -->
+    <template id="address_form_fields_datacil" inherit_id="portal.address_form_fields" name="Datacil address autocomplete">
+        <xpath expr="//input[@id='o_vat']" position="attributes">
+            <attribute name="t-att-data-datacil-autocomplete">website and website.datacil_autocomplete and website.datacil_autocomplete_mode or None</attribute>
+        </xpath>
+    </template>
+</odoo>
