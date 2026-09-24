@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* datacil_client_odoo_partner_autocomplete
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-22 16:36+0000\n"
+"PO-Revision-Date: 2026-09-22 16:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Address"
+msgstr "Dirección"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#: model:ir.model,name:datacil_client_odoo_partner_autocomplete.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Contact enriched with Datacil"
+msgstr "Contacto enriquecido con Datacil"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#: model:ir.model,website_form_label:datacil_client_odoo_partner_autocomplete.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: datacil_client_odoo_partner_autocomplete
+#: model:ir.model.fields,field_description:datacil_client_odoo_partner_autocomplete.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Economic Activity"
+msgstr "Actividad económica"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Email"
+msgstr "Correo electrónico"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#: model:ir.model.fields,field_description:datacil_client_odoo_partner_autocomplete.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Identification"
+msgstr "Identificación"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "RUC Status (SRI)"
+msgstr "Estado del RUC (SRI)"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Tax Regime"
+msgstr "Régimen tributario"
+
+#. module: datacil_client_odoo_partner_autocomplete
+#. odoo-python
+#: code:addons/datacil_client_odoo_partner_autocomplete/models/res_partner.py:0
+msgid "Type"
+msgstr "Tipo"
