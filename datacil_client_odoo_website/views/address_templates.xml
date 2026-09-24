@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Flag the identification input so the frontend only queries when the website option is on.
+         The checkout form (website_sale.address) has no flag: the frontend asks the server,
+         which answers "disabled" when the option is off. -->
+    <template id="address_form_fields_datacil" inherit_id="portal.portal_my_details_fields" name="Datacil address autocomplete">
+        <xpath expr="//input[@name='vat']" position="attributes">
+            <attribute name="t-att-data-datacil-autocomplete">website and website.datacil_autocomplete and website.datacil_autocomplete_mode or 'off'</attribute>
+        </xpath>
+    </template>
+</odoo>

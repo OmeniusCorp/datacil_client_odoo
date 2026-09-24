@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* datacil_client_odoo_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e-20260217\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-19 02:08+0000\n"
+"PO-Revision-Date: 2026-09-19 02:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: datacil_client_odoo_sale
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo_sale.sale_order_form_datacil
+msgid "<i class=\"fa fa-exclamation-triangle\" title=\"Datacil warning\"/>"
+msgstr ""
+
+#. module: datacil_client_odoo_sale
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo_sale.sale_order_form_datacil
+msgid "Check in Datacil"
+msgstr "Verificar en Datacil"
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,field_description:datacil_client_odoo_sale.field_sale_order__datacil_partner_last_sync
+msgid "Datacil Last Query"
+msgstr "Última consulta Datacil"
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,field_description:datacil_client_odoo_sale.field_sale_order__datacil_partner_warning
+msgid "Datacil Warning"
+msgstr "Alerta Datacil"
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,field_description:datacil_client_odoo_sale.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,field_description:datacil_client_odoo_sale.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,help:datacil_client_odoo_sale.field_sale_order__datacil_partner_vat
+msgid "Identification Number for selected type"
+msgstr ""
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model.fields,field_description:datacil_client_odoo_sale.field_sale_order__datacil_partner_vat
+msgid "Partner Identification"
+msgstr "Identificación del contacto"
+
+#. module: datacil_client_odoo_sale
+#: model_terms:ir.ui.view,arch_db:datacil_client_odoo_sale.sale_order_form_datacil
+msgid "Re-check in Datacil"
+msgstr "Volver a verificar en Datacil"
+
+#. module: datacil_client_odoo_sale
+#: model:ir.model,name:datacil_client_odoo_sale.model_sale_order
+msgid "Sales Order"
+msgstr ""
