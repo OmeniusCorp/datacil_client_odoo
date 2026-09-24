@@ -18,7 +18,7 @@
             <xpath expr="//page[@name='personal_information']" position="after">
                 <page name="datacil" string="Datacil" groups="hr.group_hr_user">
                     <div class="alert alert-info mb-3" role="alert" invisible="identification_id">
-                        Enter the employee's identification number (Personal tab) to enable the Datacil queries.
+                        Enter the employee's identification number (Private Information tab) to enable the Datacil queries.
                     </div>
                     <div class="alert alert-info mb-3" role="alert" invisible="id or not identification_id">
                         Save the employee to enable the Datacil queries.

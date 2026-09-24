@@ -1,4 +1,4 @@
-# Datacil Client for Odoo 19
+# Datacil Client for Odoo 18
 
 Consulta cédulas y RUC ecuatorianos en [Datacil](https://datacil.com) desde Odoo y
 autocompleta los datos del contacto, con pantallas de carga y de error claras.

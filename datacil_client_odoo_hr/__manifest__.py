@@ -18,7 +18,7 @@ Every result is kept in the tab and logged as a note in the employee chatter.
 
 Native fields filled (only when empty)
 --------------------------------------
-Identification number, legal name, birthday, gender, nationality, private
+Identification number, birthday, gender, nationality, private
 address (street, street 2, city, zip, state, country), private email and phone.
 Driver licence, judicial records and ANT data are kept in the Datacil tab,
 since Odoo has no native field for them.
