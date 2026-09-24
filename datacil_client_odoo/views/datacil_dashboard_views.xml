@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_datacil_dashboard" model="ir.actions.client">
+        <field name="name">Datacil</field>
+        <field name="tag">datacil_client_odoo.datacil_dashboard</field>
+        <field name="path">datacil-dashboard</field>
+    </record>
+
+    <record id="action_datacil_config_settings" model="ir.actions.act_window">
+        <field name="name">Datacil Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'datacil_client_odoo'}</field>
+    </record>
+
+    <menuitem id="res_partner_menu_datacil"
+        name="Datacil"
+        parent="contacts.menu_contacts"
+        action="action_datacil_dashboard"
+        sequence="2"
+        groups="group_access_datacil"/>
+</odoo>

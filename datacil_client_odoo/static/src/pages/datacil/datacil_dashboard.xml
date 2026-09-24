@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="datacil_client_odoo.datacil_dashboard" owl="1">
+    <t t-name="datacil_client_odoo.datacil_dashboard">
         <div class="h-100 overflow-auto">
-            <div class="container py-3">
+            <div class="container-fluid py-3 o_datacil_dashboard">
                 <!-- Header -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
                     <h2 class="mb-0">Datacil Dashboard</h2>
                     <button class="btn btn-primary" t-on-click="onRefresh" t-att-disabled="state.loading">
                         <i class="fa fa-refresh me-1" t-att-class="{'fa-spin': state.loading}"/>
@@ -22,9 +22,16 @@
 
                 <!-- Error -->
                 <t t-elif="state.error">
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                        <i class="fa fa-exclamation-triangle me-2 fa-lg"/>
-                        <span t-esc="state.error"/>
+                    <div t-attf-class="alert d-flex align-items-center gap-2 {{state.errorCode === 'not_configured' ? 'alert-warning' : 'alert-danger'}}" role="alert">
+                        <i t-attf-class="fa fa-lg {{state.errorCode === 'not_configured' ? 'fa-plug' : 'fa-exclamation-triangle'}}"/>
+                        <span class="flex-grow-1" t-esc="state.error"/>
+                        <button t-if="isSystem and (state.errorCode === 'not_configured' or state.errorCode === 'unauthorized')"
+                                class="btn btn-sm btn-primary" t-on-click="openSettings">
+                            <i class="fa fa-cog me-1"/>Open settings
+                        </button>
+                        <button t-else="" class="btn btn-sm btn-primary" t-on-click="onRefresh">
+                            <i class="fa fa-refresh me-1"/>Retry
+                        </button>
                     </div>
                 </t>
 
@@ -32,7 +39,7 @@
                 <t t-else="">
                     <!-- KPI Cards -->
                     <div class="row mb-4">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-12 col-sm-4 mb-3">
                             <div class="card border-primary h-100">
                                 <div class="card-body text-center">
                                     <div class="text-muted mb-1">Credit Balance</div>
@@ -41,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-12 col-sm-4 mb-3">
                             <div class="card border-warning h-100">
                                 <div class="card-body text-center">
                                     <div class="text-muted mb-1">Total Consumed</div>
@@ -50,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-12 col-sm-4 mb-3">
                             <div class="card border-info h-100">
                                 <div class="card-body text-center">
                                     <div class="text-muted mb-1">Queries Performed</div>
@@ -63,12 +70,12 @@
 
                     <div class="row">
                         <!-- Costs Table -->
-                        <div class="col-md-5 mb-4">
+                        <div class="col-12 col-lg-5 mb-4">
                             <div class="card h-100">
                                 <div class="card-header bg-white">
                                     <h5 class="mb-0"><i class="fa fa-tags me-2"/>Costs by Service</h5>
                                 </div>
-                                <div class="card-body p-0">
+                                <div class="card-body p-0 table-responsive">
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light">
                                             <tr>
@@ -78,10 +85,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <t t-foreach="state.costs" t-as="cost" t-key="cost.serviceKey">
+                                            <t t-foreach="state.costs" t-as="cost" t-key="cost_index">
                                                 <tr>
                                                     <td>
-                                                        <span class="badge bg-secondary" style="color: white" t-esc="cost.serviceKey"/>
+                                                        <span class="badge bg-secondary text-wrap text-start" t-esc="cost.serviceKey"/>
                                                     </td>
                                                     <td class="text-muted small" t-esc="cost.description"/>
                                                     <td class="text-end">
@@ -97,12 +104,12 @@
                         </div>
 
                         <!-- Usage Breakdown -->
-                        <div class="col-md-7 mb-4">
+                        <div class="col-12 col-lg-7 mb-4">
                             <div class="card mb-4">
                                 <div class="card-header bg-white">
                                     <h5 class="mb-0"><i class="fa fa-pie-chart me-2"/>Consumption by Service</h5>
                                 </div>
-                                <div class="card-body p-0">
+                                <div class="card-body p-0 table-responsive">
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light">
                                             <tr>
@@ -115,7 +122,7 @@
                                             <t t-foreach="serviceBreakdown" t-as="item" t-key="item.service">
                                                 <tr>
                                                     <td>
-                                                        <span class="badge bg-primary" style="color: white" t-esc="item.service"/>
+                                                        <span class="badge bg-primary text-wrap text-start" t-esc="item.service"/>
                                                     </td>
                                                     <td class="text-end" t-esc="item.count"/>
                                                     <td class="text-end fw-bold" t-esc="item.total"/>
@@ -134,7 +141,7 @@
                                 <div class="card-header bg-white">
                                     <h5 class="mb-0"><i class="fa fa-history me-2"/>Transaction History</h5>
                                 </div>
-                                <div class="card-body p-0" style="max-height: 400px; overflow-y: auto;">
+                                <div class="card-body p-0 table-responsive" style="max-height: 400px;">
                                     <table class="table table-hover mb-0">
                                         <thead class="table-light" style="position: sticky; top: 0;">
                                             <tr>
@@ -145,14 +152,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <t t-foreach="state.history" t-as="tx" t-key="tx.$id">
+                                            <t t-foreach="state.history" t-as="tx" t-key="tx_index">
                                                 <tr>
                                                     <td class="text-muted small text-nowrap" t-esc="tx.date"/>
                                                     <td>
-                                                        <span class="badge bg-primary" style="color: white" t-esc="tx.service_key"/>
+                                                        <span class="badge bg-primary text-wrap text-start" t-esc="tx.service_key"/>
                                                     </td>
                                                     <td>
-                                                        <code t-esc="tx.query_param"/>
+                                                        <code class="text-break" t-esc="tx.query_param"/>
                                                     </td>
                                                     <td class="text-end text-danger fw-bold" t-esc="tx.amount"/>
                                                 </tr>

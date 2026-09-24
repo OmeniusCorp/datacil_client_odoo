@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="datacil_client_odoo.DatacilLookupWidget">
+        <button type="button"
+                t-attf-class="btn btn-sm {{btnClass}} o_datacil_lookup_button"
+                t-att-disabled="isDisabled or props.readonly"
+                t-att-title="title"
+                t-on-click="onClick">
+            <t t-if="state.loading">
+                <i class="fa fa-spinner fa-spin me-1" role="img" aria-label="Loading"/>
+                <span>Querying...</span>
+            </t>
+            <t t-else="">
+                <i t-attf-class="fa {{props.icon}} me-1" role="img" t-att-aria-label="label"/>
+                <span t-esc="label"/>
+            </t>
+        </button>
+    </t>
+
+</templates>

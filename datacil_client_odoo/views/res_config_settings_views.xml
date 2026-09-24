@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_config_settings_datacil" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.datacil</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app name="datacil_client_odoo" string="Datacil" data-key="datacil_client_odoo" groups="base.group_system">
+                    <block title="Credits">
+                        <setting string="Available Credits" help="Balance of your Datacil account. Refreshed after each paid query and on demand.">
+                            <field name="datacil_config_id" invisible="1"/>
+                            <field name="datacil_is_configured" invisible="1"/>
+                            <div class="o_datacil_credits d-flex align-items-baseline gap-2 mt-2">
+                                <span class="display-6 fw-bold text-primary"><field name="datacil_credits_balance" readonly="1" class="oe_inline"/></span>
+                                <field name="datacil_credits_currency" readonly="1" class="oe_inline text-muted"/>
+                            </div>
+                            <div class="text-muted small mb-2" invisible="not datacil_credits_synced_at">
+                                Last sync: <field name="datacil_credits_synced_at" readonly="1" class="oe_inline"/>
+                            </div>
+                            <div class="text-warning small mb-2" invisible="datacil_is_configured">
+                                Enter the API key below and save to connect.
+                            </div>
+                            <div class="mt-2">
+                                <button name="action_datacil_refresh_credits" type="object" string="Refresh &amp; test connection"
+                                        class="btn btn-primary btn-sm" icon="fa-refresh"/>
+                                <button name="action_datacil_open_dashboard" type="object" string="Open dashboard"
+                                        class="btn btn-link btn-sm" icon="fa-bar-chart"/>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Datacil Connection">
+                        <setting help="Validation Service URL.">
+                            <field name="datacil_api_url" placeholder="https://api.datacil.com"/>
+                        </setting>
+                        <setting help="Secret authentication key.">
+                            <field name="datacil_api_key" password="True" placeholder="••••••••••"/>
+                        </setting>
+                        <setting help="API Version.">
+                            <field name="datacil_api_version"/>
+                        </setting>
+                        <setting help="Country where contact data is queried.">
+                            <field name="datacil_api_country"/>
+                        </setting>
+                        <setting help="Seconds to wait for API response.">
+                            <field name="datacil_api_delay" placeholder="10"/>
+                        </setting>
+                    </block>
+
+                    <block title="Validations">
+                        <setting help="When validating the ID of a previously registered customer, load their information anyway.">
+                            <field name="datacil_load_created_partners"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

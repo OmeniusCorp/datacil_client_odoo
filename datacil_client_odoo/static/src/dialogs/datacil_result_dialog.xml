@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="datacil_client_odoo.DatacilResultDialog">
+        <Dialog title="title" size="'md'">
+            <div class="o_datacil_result">
+                <div t-if="props.result.warning" class="alert alert-warning d-flex align-items-start gap-2 mb-3" role="alert">
+                    <i class="fa fa-exclamation-triangle mt-1"/>
+                    <div>
+                        <span t-esc="props.result.warning"/>
+                        <button t-if="props.result.existing_partner" type="button" class="btn btn-link btn-sm p-0 ms-1 align-baseline" t-on-click="openExisting">
+                            Open existing contact
+                        </button>
+                    </div>
+                </div>
+
+                <div t-if="props.result.message and !rows.length and !html" class="alert alert-success" role="alert">
+                    <i class="fa fa-check-circle me-1"/><span t-esc="props.result.message"/>
+                </div>
+
+                <table t-if="rows.length" class="table table-sm table-borderless mb-0 o_datacil_result_table">
+                    <tbody>
+                        <tr t-foreach="rows" t-as="row" t-key="row_index">
+                            <th class="text-muted fw-normal text-nowrap pe-3 w-25" t-esc="row.label"/>
+                            <td class="fw-medium" t-esc="row.value"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div t-if="html" class="o_datacil_result_html mt-2" t-out="html"/>
+
+                <div t-if="credits" class="text-muted small mt-3 border-top pt-2">
+                    <i class="fa fa-database me-1"/>
+                    Available credits: <span class="fw-bold" t-esc="credits.balance"/> <span t-esc="credits.currency"/>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <button t-if="props.canApply" type="button" class="btn btn-primary" t-on-click="onApply">
+                    <i class="fa fa-check me-1"/>Apply data
+                </button>
+                <button type="button" class="btn btn-secondary" t-on-click="() => this.props.close()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
