@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="fleet_vehicle_view_form_datacil" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.datacil</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h2/field[@name='license_plate']" position="after">
+                <widget name="datacil_lookup" field="license_plate" method="datacil_lookup_vehicle"
+                        string="Query plate in Datacil" icon="fa-search" class="ms-2 align-middle"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Datacil" name="datacil" invisible="not datacil_last_sync">
+                    <group>
+                        <group string="Registered Owner (ANT)">
+                            <field name="datacil_owner_name" force_save="1"/>
+                            <field name="datacil_owner_vat" force_save="1"/>
+                            <field name="datacil_last_sync" force_save="1"/>
+                        </group>
+                        <group string="Pending Items">
+                            <field name="datacil_pending_fees" force_save="1"/>
+                            <field name="datacil_citation_count" force_save="1"/>
+                        </group>
+                    </group>
+                    <field name="datacil_info" force_save="1" readonly="1" nolabel="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
