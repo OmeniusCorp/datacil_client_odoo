@@ -1,7 +1,7 @@
 {
-    'name': 'Datacil Client - Employees',
+    'name': 'Datacil Empleados Ecuador - Identidad, licencia y antecedentes por cedula',
     'version': '18.0.2.1.0',
-    'summary': 'Identity, driver licence, judicial and ANT checks for employees with Datacil',
+    'summary': 'Completa la ficha personal desde la cedula y consulta licencia de conducir, antecedentes judiciales y ANT',
     'description': """
 Datacil for Employees
 =====================
@@ -15,7 +15,14 @@ query the employee's identification number:
 * **ANT citations & debt**: traffic citations and account statement.
 
 Every result is kept in the tab and logged as a note in the employee chatter.
-    """,
+
+Native fields filled (only when empty)
+--------------------------------------
+Identification number, legal name, birthday, gender, nationality, private
+address (street, street 2, city, zip, state, country), private email and phone.
+Driver licence, judicial records and ANT data are kept in the Datacil tab,
+since Odoo has no native field for them.
+""",
     'author': 'Datacil',
     'support': 'soporte@datacil.com',
     'website': 'https://datacil.com',
@@ -23,6 +30,8 @@ Every result is kept in the tab and logged as a note in the employee chatter.
     'license': 'LGPL-3',
     'depends': ['datacil_client_odoo', 'hr'],
     'data': ['views/hr_employee_views.xml'],
+    'images': ['static/description/banner.jpg'],
     'auto_install': True,
     'installable': True,
+    'application': False,
 }

@@ -1,7 +1,7 @@
 {
-    'name': 'Datacil Client Ecuador - Consultar Cedula y RUC Autocompletar datos',
+    'name': 'Datacil Ecuador - Validar Cedula y RUC, autocompletar contactos y POS',
     'version': '18.0.2.1.0',
-    'summary': 'Validate Ecuadorian cédula / RUC with Datacil and autocomplete contacts, in the backend and the Point of Sale',
+    'summary': 'Valida cedula (10 digitos) y RUC (13 digitos) del SRI y autocompleta el contacto en Odoo y en el Punto de Venta',
     'description': """
 Datacil Client for Odoo
 =======================

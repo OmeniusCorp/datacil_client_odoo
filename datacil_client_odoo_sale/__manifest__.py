@@ -1,7 +1,7 @@
 {
-    'name': 'Datacil Client - Sales',
+    'name': 'Datacil Ventas Ecuador - Alerta de RUC suspendido o empresa fantasma',
     'version': '18.0.2.1.0',
-    'summary': 'SRI status warnings and Datacil checks on quotations and sales orders',
+    'summary': 'Avisa en presupuestos y pedidos cuando el RUC del cliente esta suspendido, cancelado o es empresa fantasma (SRI)',
     'description': """
 Datacil for Sales
 =================
@@ -10,7 +10,12 @@ Datacil for Sales
   contact by the Datacil Client module).
 * *Check in Datacil* button to refresh the customer data and flags without
   leaving the order.
-    """,
+
+What it shows
+-------------
+The warning reads the SRI data already stored on the contact, so opening an
+order costs nothing. Verifying queries Datacil and refreshes the customer.
+""",
     'author': 'Datacil',
     'support': 'soporte@datacil.com',
     'website': 'https://datacil.com',
@@ -18,6 +23,8 @@ Datacil for Sales
     'license': 'LGPL-3',
     'depends': ['datacil_client_odoo', 'sale'],
     'data': ['views/sale_order_views.xml'],
+    'images': ['static/description/banner.jpg'],
     'auto_install': True,
     'installable': True,
+    'application': False,
 }

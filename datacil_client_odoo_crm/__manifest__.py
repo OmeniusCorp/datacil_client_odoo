@@ -1,7 +1,7 @@
 {
-    'name': 'Datacil Client - CRM',
+    'name': 'Datacil CRM Ecuador - Iniciativas y oportunidades desde Cedula o RUC',
     'version': '18.0.2.1.0',
-    'summary': 'Fill leads and opportunities from a cédula / RUC with Datacil',
+    'summary': 'Llena iniciativas y oportunidades con los datos del SRI escribiendo la cedula o el RUC, sin duplicar clientes',
     'description': """
 Datacil for CRM
 ===============
@@ -12,7 +12,13 @@ button (same loading screen and dialogs as the contact form).
 * Links the existing customer when the identification is already registered,
   instead of creating a duplicate later.
 * Carries the identification over to the customer created from the lead.
-    """,
+
+Native fields filled
+--------------------
+Company name or contact name, street, street 2, city, zip, state, country,
+email, phone and industry. The customer is linked instead of duplicated when
+the identification is already registered.
+""",
     'author': 'Datacil',
     'support': 'soporte@datacil.com',
     'website': 'https://datacil.com',
@@ -20,6 +26,8 @@ button (same loading screen and dialogs as the contact form).
     'license': 'LGPL-3',
     'depends': ['datacil_client_odoo', 'crm'],
     'data': ['views/crm_lead_views.xml'],
+    'images': ['static/description/banner.jpg'],
     'auto_install': True,
     'installable': True,
+    'application': False,
 }
