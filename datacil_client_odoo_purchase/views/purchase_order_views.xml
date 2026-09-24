@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="purchase_order_form_datacil" model="ir.ui.view">
+        <field name="name">purchase.order.form.datacil</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <field name="datacil_partner_vat" invisible="1"/>
+                <field name="datacil_partner_last_sync" invisible="1"/>
+                <div class="alert alert-warning d-flex align-items-center gap-2" role="alert" invisible="not datacil_partner_warning">
+                    <i class="fa fa-exclamation-triangle" title="Datacil warning"/>
+                    <field name="datacil_partner_warning" class="fw-bold flex-grow-1"/>
+                    <widget name="datacil_lookup" field="datacil_partner_vat" method="datacil_check_partner" apply="0"
+                            string="Re-check in Datacil" icon="fa-refresh"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <widget name="datacil_lookup" field="datacil_partner_vat" method="datacil_check_partner" apply="0"
+                        string="Check in Datacil" icon="fa-shield" variant="link" invisible="datacil_partner_warning or not datacil_partner_vat"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
